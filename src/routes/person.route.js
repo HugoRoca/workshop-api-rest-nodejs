@@ -12,6 +12,8 @@ const controller = new PersonController()
 
 // GET /person/29
 router.get('person/byIndex', '/:index', controller.getByIndex)
+// TODO => /person?gender=male&index=1
+router.get('/', controller.checkPerson)
 
 // POST
 router.post('person/post', '/',  controller.save)

@@ -24,4 +24,8 @@ module.exports = class PersonRepository {
     const options = { upsert: upsert }
     await PersonModel.updateOne(filter, person, options)
   }
+
+  async findByQuery(filter) {
+    return await PersonModel.find(filter)
+  }
 }

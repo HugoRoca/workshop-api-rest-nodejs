@@ -36,4 +36,23 @@ module.exports = class PersonController {
     await repository.save(person, true)
     ctx.body = person
   }
+
+  async checkPerson(ctx) {
+    const filter = {}
+
+    for (const key in ctx.query) {
+      const item = ctx.query[key]
+      filter[key] = item
+    }
+    
+    if (Object.keys(filter).length === 0) ctx.throw(400, 'params query undefined')
+
+    const data = await repository.findByQuery(filter)
+
+    if (!data || data.length === 0) {
+      ctx.throw(400, 'not data')
+    }
+
+    ctx.body = data
+  }
 }
